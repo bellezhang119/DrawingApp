@@ -1,4 +1,4 @@
-package com.tutorials.drawingapp
+package com.kotlinapps.drawingapp
 
 import org.junit.Test
 

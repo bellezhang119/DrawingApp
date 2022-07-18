@@ -1,4 +1,4 @@
-package com.tutorials.drawingapp
+package com.kotlinapps.drawingapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
