@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/drawable/background_drawing_view.xml" value="0.1" />
         <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/layout/activity_main.xml" value="0.2657407407407407" />
+        <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/layout/dialog_brush_size.xml" value="0.33" />
       </map>
     </option>
   </component>
