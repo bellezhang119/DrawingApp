@@ -4,8 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/drawable/background_drawing_view.xml" value="0.1" />
+        <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/drawable/gradient_background.xml" value="0.1" />
+        <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/drawable/gradient_drawable.xml" value="0.1" />
+        <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/drawable/gradient_rainbow.xml" value="0.1" />
+        <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/drawable/solid_color_image.xml" value="0.2875" />
+        <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/drawable/thumb.xml" value="0.1625" />
         <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/layout/activity_main.xml" value="0.2657407407407407" />
+        <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/layout/dialog_brush_color.xml" value="0.17430555555555555" />
         <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/layout/dialog_brush_size.xml" value="0.33" />
+        <entry key="..\:/Users/zhang/Documents/AndroidStudioProjects/DrawingApp/app/src/main/res/layout/dialog_color_picker.xml" value="0.22" />
       </map>
     </option>
   </component>

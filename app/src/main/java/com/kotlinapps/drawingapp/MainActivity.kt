@@ -3,25 +3,29 @@ package com.kotlinapps.drawingapp
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.SeekBar
+import androidx.constraintlayout.widget.ConstraintLayout
 
 class MainActivity : AppCompatActivity() {
 
+    private var layout : ConstraintLayout? = null
+
     private var drawingView : DrawingView? = null
+
     private var brushButton : ImageButton? = null
     private var brushDialog: Dialog? = null
     private var brushSeekBar : SeekBar? = null
 
-    private var displayMetrics : DisplayMetrics = DisplayMetrics()
-    private var width = displayMetrics.widthPixels
-    private var height = displayMetrics.heightPixels
+    private var colorButton : ImageButton? = null
+    private var colorPickerDialog : ColorPickerDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        layout = findViewById(R.id.layout_main)
 
         drawingView = findViewById(R.id.drawing_view)
         drawingView?.setBrushSize(20f)
@@ -31,8 +35,15 @@ class MainActivity : AppCompatActivity() {
         brushDialog?.setContentView(R.layout.dialog_brush_size)
         brushSeekBar = brushDialog?.findViewById(R.id.brush_seekBar)
 
+        colorButton = findViewById(R.id.color_button)
+        colorPickerDialog = ColorPickerDialog(this, colorButton, drawingView)
+
         brushButton?.setOnClickListener {
             showBrushSizeDialog()
+        }
+
+        colorButton?.setOnClickListener {
+            showColorPickerDialog()
         }
     }
 
@@ -54,6 +65,10 @@ class MainActivity : AppCompatActivity() {
         })
 
         brushDialog?.show()
+    }
+
+    private fun showColorPickerDialog() {
+        colorPickerDialog?.show()
     }
 }
 
