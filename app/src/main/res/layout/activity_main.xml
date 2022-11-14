@@ -47,7 +47,33 @@
         >
 
         <ImageButton
-            android:id="@+id/image_button"
+            android:id="@+id/ib_undo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/undo_icon"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageButton
+            android:id="@+id/ib_redo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:rotation="180"
+            android:scaleY="-1"
+            android:layout_margin="5dp"
+            android:src="@drawable/undo_icon"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageButton
+            android:id="@+id/ib_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"
@@ -59,7 +85,7 @@
             />
 
         <ImageButton
-            android:id="@+id/brush_button"
+            android:id="@+id/ib_brush"
             android:layout_width="49dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"
@@ -71,7 +97,7 @@
             />
 
         <ImageButton
-            android:id="@+id/color_button"
+            android:id="@+id/ib_color"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"

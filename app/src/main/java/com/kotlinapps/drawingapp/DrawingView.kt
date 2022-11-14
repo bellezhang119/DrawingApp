@@ -12,12 +12,17 @@ class DrawingView(context : Context, attrs : AttributeSet) : View(context, attrs
 
     private var drawPath : CustomPath? = null
     private var canvasBitMap : Bitmap? = null
+
     private var drawPaint : Paint? = null
     private var canvasPaint : Paint? = null
+
     private var brushSize : Float = 0.toFloat()
     private var color = Color.BLACK
+
     private var canvas : Canvas? = null
+
     private val paths = ArrayList<CustomPath>()
+    private val undoPaths = ArrayList<CustomPath>()
 
     init {
         drawPath = CustomPath(color, brushSize)
@@ -86,6 +91,20 @@ class DrawingView(context : Context, attrs : AttributeSet) : View(context, attrs
             drawPaint?.strokeWidth = drawPath!!.brushThickness
             drawPaint?.color = drawPath!!.color
             canvas.drawPath(drawPath!!, drawPaint!!)
+        }
+    }
+
+    fun onClickUndo() {
+        if (paths.size > 0) {
+            undoPaths.add(paths.removeAt(paths.size-1))
+            invalidate()
+        }
+    }
+
+    fun onClickRedo() {
+        if (undoPaths.size > 0) {
+            paths.add(undoPaths.removeAt(undoPaths.size-1))
+            invalidate()
         }
     }
 

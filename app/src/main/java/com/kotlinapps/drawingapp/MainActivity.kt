@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity() {
 
     private var editor : SharedPreferences.Editor? = null
 
+    private var undoButton : ImageButton? = null
+    private var redoButton : ImageButton? = null
+
     private val openGalleryLauncher : ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()) {
         result ->
@@ -88,19 +91,22 @@ class MainActivity : AppCompatActivity() {
 
         drawingView = findViewById(R.id.drawing_view)
         drawingView?.setBrushSize(20f)
-        brushButton = findViewById(R.id.brush_button)
+        brushButton = findViewById(R.id.ib_brush)
 
         brushDialog = Dialog(this)
         brushDialog?.setContentView(R.layout.dialog_brush_size)
         brushSeekBar = brushDialog?.findViewById(R.id.brush_seekBar)
 
-        colorButton = findViewById(R.id.color_button)
+        colorButton = findViewById(R.id.ib_color)
         colorPickerDialog = ColorPickerDialog(this, colorButton, drawingView)
 
-        imageButton = findViewById(R.id.image_button)
+        imageButton = findViewById(R.id.ib_image)
 
         settings = getSharedPreferences("firstEverRequest", 0)
         editor = settings?.edit()
+
+        undoButton = findViewById(R.id.ib_undo)
+        redoButton = findViewById(R.id.ib_redo)
 
         brushButton?.setOnClickListener {
             showBrushSizeDialog()
@@ -112,6 +118,14 @@ class MainActivity : AppCompatActivity() {
 
         imageButton?.setOnClickListener {
             requestStoragePermission()
+        }
+
+        undoButton?.setOnClickListener {
+            drawingView?.onClickUndo()
+        }
+
+        redoButton?.setOnClickListener {
+            drawingView?.onClickRedo()
         }
     }
 
