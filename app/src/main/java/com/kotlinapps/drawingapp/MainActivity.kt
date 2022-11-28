@@ -10,6 +10,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +27,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
@@ -55,6 +57,8 @@ class MainActivity : AppCompatActivity() {
     private var redoButton : ImageButton? = null
 
     private var diskButton : ImageButton? = null
+
+    var customProgressDialog : Dialog? = null
 
     private val openGalleryLauncher : ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()) {
@@ -149,6 +153,8 @@ class MainActivity : AppCompatActivity() {
 
         diskButton?.setOnClickListener {
             if (isReadStorageAllowed()) {
+                showProgressDialog()
+
                 lifecycleScope.launch {
                     val flDrawingView : FrameLayout = findViewById(R.id.fl_drawing_view_container)
 
@@ -218,9 +224,11 @@ class MainActivity : AppCompatActivity() {
                     result = file.absolutePath
 
                     runOnUiThread {
+                        cancelProgressDialog()
                         if (result.isNotEmpty()) {
                             Toast.makeText(this@MainActivity, "File saved successfully: $result",
                             Toast.LENGTH_SHORT).show()
+                            shareImage(result)
                         } else {
                             Toast.makeText(this@MainActivity, "Something went wrong",
                                 Toast.LENGTH_SHORT).show()
@@ -278,6 +286,32 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         builder.create().show()
+    }
+
+    private fun showProgressDialog() {
+        customProgressDialog = Dialog(this@MainActivity)
+        customProgressDialog?.setContentView(R.layout.dialog_custom_progress)
+
+        customProgressDialog?.show()
+
+    }
+
+    private fun cancelProgressDialog() {
+        if (customProgressDialog != null) {
+            customProgressDialog?.dismiss()
+            customProgressDialog = null
+        }
+    }
+
+    private fun shareImage(result : String) {
+        MediaScannerConnection.scanFile(this, arrayOf(result), null) {
+            path, uri ->
+            val shareIntent = Intent()
+            shareIntent.action = Intent.ACTION_SEND
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
+            shareIntent.type = "image/png"
+            startActivity(Intent.createChooser(shareIntent, "share"))
+        }
     }
 }
 
